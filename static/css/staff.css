@@ -1,0 +1,16 @@
+.staff-body {
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	margin: 50px 0 0 0;
+}
+
+.staff-container {
+	width: 95%;
+}
+
+.staff-container ul li {
+	color: white;
+	font-size: 20px;
+}

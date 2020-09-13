@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "{% static '/css/account.css' %}" />
+    <link rel = "stylesheet" type = "text/css" href = "{% static '/css/style.css' %}" />
+    <link rel = "stylesheet" href = "{% static '/css/animations.css' %}" />
+    <title>OtakuRealm Login</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class = "item-container">
+                <a href="{% url 'index' %}" class = "link padding">
+                    <div class = "item">
+                        <span>Home</span>
+                    </div>
+                </a>
+                <a href="register" class = "link padding">
+                    <div class = "item">
+                        <span>SignUp</span>
+                    </div>
+                </a>
+                <a href="login" class = "link padding">
+                    <div class = "item">
+                        <span>Login</span>
+                    </div>
+                </a>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <form action = "login" method="post">
+        {% csrf_token %}
+        <div class = "form-container">
+            <div class = title>
+                User Login
+            </div>
+            <div class = "item-block">
+            <label class = "label" for = "username">Username:</label><br />
+            <input type = "text" name = "username" class = "input name" placeholder = "" /><br /><br />
+
+            <label class = "label" for = "password">Password:</label><br />
+            <input type = "password" name = "password" class = "input password" placeholder = "" /><br /><br />
+
+            <div class = "submit-block">
+            <input type = "submit" name = "SignUp" class = "submit" value = "Login"/>
+            </div>
+        </div>
+            </div>
+        </div>
+    </form>
+    <div class = "error">
+    {% for message in messages %}
+    <span>{{message}}</span>
+    {% endfor %}
+    </div>
+
+</body>
+</html>

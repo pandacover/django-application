@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Stylesheets-->
+        <link rel = "stylesheet" type = "text/css" href = "{% static '/css/style.css' %}" />
+        <link rel = "stylesheet" type = "text/css" href = "{% static '/css/animations.css' %}" />
+        <link rel = "stylesheet" type = "text/css" href = "{% static '/css/staff.css' %}"
+        <!--Google fonts-->
+        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300&family=Quicksand:wght@500&display=swap" rel="stylesheet"> 
+        <!--Font Awesome Js-->
+        <script src="https://kit.fontawesome.com/36aa9cf777.js" crossorigin="anonymous"></script>
+        <title>Otaku Realm Staff</title>
+    </head>
+<body onload="loading()">
+    <div class = "preloader" id = "preloader"><div class = "preloader-container"><figure></figuer></div></div>
+    <header>
+        <!--NavBar Starts-->
+        <nav class = "navbar">
+            <!--Page Links-->
+            
+            <div class = "item-container">
+                {% if user.is_authenticated %}
+                <!--If authenticated-->
+                <span class = "link padding">
+                    <div class = "item">
+                        <span>Welcome &nbsp;{{user.username}}</span>
+                    </div>
+                </span>
+                <a href="{% url 'index' %}" class = "link padding">
+                    <div class = "item">
+                        <span>Home</span>
+                    </div>
+                </a>
+                <a href="staff" class = "link padding">
+                    <div class = "item">
+                        <span>Staff</span>
+                    </div>
+                </a>
+                <a href="support" class = "link padding">
+                    <div class = "item">
+                        <span>Support</span>
+                    </div>
+                </a>
+                {% else %}
+                <!--If not authenticated-->
+                <a href="{% url 'index' %}" class = "link padding">
+                    <div class = "item">
+                        <span>Home</span>
+                    </div>
+                </a>
+                <a href="accounts/register" class = "link padding">
+                    <div class = "item">
+                        <span>SignUp</span>
+                    </div>
+                </a>
+                <a href="accounts/login" class = "link padding">
+                    <div class = "item">
+                        <span>Login</span>
+                    </div>
+                </a>
+                {% endif %}
+            </div>
+            <!--Social Media Icons-->
+            <div class = "icon-container">
+                <a href = "https://www.reddit.com/r/OtakuCommuityRealm/" class = "icon padding">
+                    <div class = "social-item">
+                        <span><i class = "fab fa-reddit"></i></span>
+                    </div>
+                </a>
+                <a href = "" class = "icon padding">
+                    <div class = "social-item">
+                        <span><i class = "fab fa-instagram"></i></span>
+                    </div>
+                </a>
+                <a href = "https://discord.gg/3rjF858" class = "icon padding">
+                    <div class = "social-item">
+                        <span><i class = "fab fa-discord"></i></span>
+                    </div>
+                </a>
+                {% if user.is_authenticated %}
+
+                <a href="logout" class = "icon padding">
+                    <div class = "social-item">
+                        <span>Logout</span>
+                    </div>
+                </a>
+
+                {% endif %}
+            </div>
+        </nav>
+        <!--NavBar ends-->
+    </header>
+
+    <div class = "staff-body">
+        <div class = "staff-container">
+            <span class = "body-title">Realm Staff</span>
+            <p>
+                <div class = "line"></div>
+            </p>
+            <ul>
+                {% for user in staffs %}
+                <li>{{user.name}}</li>
+                <ul>
+                    <li>{{user.username}}</li>
+                    <li>{{user.category}}</li>
+                </ul>
+                <br />
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <script src = "{% static '/js/preloader.js' %}"></script>
+</body>
+</html>
